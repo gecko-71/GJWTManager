@@ -28,10 +28,7 @@ A simple JWT (JSON Web Token) library for Delphi with no external dependencies.
 - Configurable validation parameters
 
 ## Requirements
-
-- Delphi 10.3 Rio or later
-- FastMM5 (included in examples)
-- Standard Delphi units: System.JSON, System.NetEncoding
+FastMM5 (included in examples)
 
 ## Installation
 
