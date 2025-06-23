@@ -62,10 +62,8 @@ begin
       'api.yourapp.com'    // Audience (optional)
     );
     
-    // Create token
     Token := Manager.CreateToken('user123');
     
-    // Validate token
     if Manager.ValidateToken(Token, JWT) then
     begin
       Writeln('Subject: ', JWT.Subject);
@@ -121,14 +119,12 @@ var
 begin
   JWT := nil;
   try
-    // Extract token from Authorization header
     ExtractedToken := Manager.ExtractTokenFromAuthHeader('Bearer eyJhbGc...');
 
-    // Validate with rate limiting
     if Manager.ValidateToken(ExtractedToken, JWT, ClientIP) then
       // Valid request
     else if JWT.LastError = jeRateLimited then
-      // Too many attempts
+      
   finally
     if Assigned(JWT) then
       JWT.Free;
@@ -152,19 +148,9 @@ Manager.EnableSecurityLogging := True;   // Enable event logging
 ## Testing
 
 Run the included examples:
-- `GJWTExample01.exe` - Comprehensive security tests
-- `GJWTExample02.exe` - Feature demonstrations
+- `GJWTExample01.exe` 
+- `GJWTExample02.exe` 
 
-
-
-### Recommended Production Settings
-```pascal
-Manager.ClockSkewTolerance := 30;        // Handle 30-second time drift
-Manager.MaxTokenSize := 4096;            // Prevent oversized tokens
-Manager.MaxValidationAttempts := 5;      // Limit brute force attempts
-Manager.ValidationWindowMinutes := 15;   // Reset rate limits every 15 minutes
-Manager.EnableSecurityLogging := True;   // Log security events
-```
 
 ## License
 
